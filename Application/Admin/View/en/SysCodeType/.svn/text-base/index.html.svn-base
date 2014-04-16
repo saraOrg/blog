@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<tagLib name="happy" />
+<html>
+    <head>
+        {:resource('basic', 'Data Dictionary type')}
+    </head>
+    <body>
+        <div class='container-fluid'>
+            <include file='Public:navigate' />
+            <div class='btn-group' style='margin:10px;'>
+                <a class='btn' href="javascript:void(0)" onclick="EU.location.add()"><i class='icon-plus-sign'></i> Add</a>
+                <a class='btn' href="javascript:void(0)" onclick="EU.location.del(false, true)"><i class='icon-remove-sign'></i> Delete</a>
+            </div>
+            <div class='scroll'>
+                <happy:list pk="type_id" datasource='list' name='val' checkbox="key" show='type_id:Type Id,type_value:Type Value,type_remark:Type Description' style="table table-bordered table-striped table-nowrap" action='true' actionlist='EU.location.edit:Edit'/>
+            </div>
+        </div>
+    </body>
+</html>

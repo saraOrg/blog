@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {:resource('basic,ztree', '菜单组件列表')}
+    </head>
+    <body>
+        <include file='Public:navigate' />
+        <div id='MenuTree' class='ztree'></div>
+    </body>
+</html>
+<script language='javascript' type='text/javascript'>
+    var mTree = null;
+    $(function(){
+        var setting = {};
+        mTree = $.fn.zTree.init($("#MenuTree"), setting, eval('{$menuList}'));
+    });
+</script>

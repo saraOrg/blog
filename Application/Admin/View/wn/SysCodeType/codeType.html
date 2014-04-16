@@ -1,0 +1,24 @@
+<form action="__URL__/{$action}.html" method='post'>
+    <input type="hidden" name="type_id" value="{$vo.type_id}" />
+    <div>
+        <div class='input-prepend'>
+            <span class='add-on red'>代碼</span>
+            <input type='text' name='type_value' placeholder="請輸入代碼" required="required" autocomplete='off' value='{$vo.type_value}'/>
+        </div>
+    </div>
+     <div>
+        <div class='input-prepend'>
+            <span class='add-on red'>描述</span>
+            <input type='text' name='type_remark' placeholder="請輸入描述" required="required" value='{$vo.type_remark}' />
+        </div>
+    </div>
+    <div>
+        <div class='input-prepend'>
+            <span class='add-on red'>排序</span>
+            <input type='text' name='seq_code' placeholder="請輸入排序標識" required="required" value='{$vo.seq_code}' />
+        </div>
+    </div>
+    <div class='tc mt20'>
+        <input type='submit' class='btn btn-primary' value='保存' />
+    </div>
+</form>

@@ -1,0 +1,63 @@
+<form action='__URL__/setAccess.html' method='post'>
+    <div>
+        <volist name='nodeList' id='con'>
+            <dt>
+            <input type='checkbox' name='node[]' value='{$con.id}' <in name='con.id' value='$accessList'>checked</in> />{$con.name}
+            <input type='hidden' name='level[]' value='{$con.level}' />
+            <volist name='con.child' id='ccon'>
+                <dl>
+                    <input type='checkbox' name='node[]' value='{$ccon.id}' <in name='ccon.id' value='$accessList'>checked</in>/>{$ccon.name}
+                    <input type='hidden' name='level[]' value='{$ccon.level}' />
+                    <volist name='ccon.child' id='cccon'>
+                        <dd>
+                            <input type='checkbox' name='node[]' value='{$cccon.id}' <in name='cccon.id' value='$accessList'>checked</in>/>{$cccon.name}
+                            <input type='hidden' name='level[]' value='{$ccon.level}' />
+                        </dd>
+                    </volist>
+                </dl>
+            </volist>
+            </dt>
+        </volist>
+    </div>
+    <div class='tc mt20'>
+        <input type='hidden' name='role_id' value='{$Think.get.id}' />
+        <input type='submit' class='btn btn-success' value='保存' />
+    </div>
+</form>
+<script>
+    $(function() {
+        //模块选中/取消，下面的字节点全部选中/取消
+        $('dt input:checkbox').click(function() {
+            var children = $(this).parent('dt').children('dl').children('input:checkbox');
+            $(this).attr('checked') ? children.attr('checked', 'checkbox') : children.removeAttr('checked');
+        });
+        //控制器选中/取消，则对应的上层模块选中/取消，下面弄的字节点全部选中/取消
+        $('dl input:checkbox').click(function() {
+            var children = $(this).parent('dl').children('dd').children('input:checkbox');
+            var parent = $(this).parent('dl').parent('dt').children('input:checkbox');
+            $(this).attr('checked') ? children.attr('checked', 'checkbox') : children.removeAttr('checked');
+            if ($(this).attr('checked') === 'checked') {
+                parent.attr('checked', 'checkbox');
+            } else {
+                //当上层模块下面只有一个控制器选中的时候，取消的时候联动取消
+                var len = $(this).parent('dl').parent('dt').children('dl').children('input:checkbox[checked]').length;
+                (len === 0) &&  parent.removeAttr('checked');
+            }
+        });
+        //方法选中/取消，对应的上层控制器选中/取消，对应控制器的上层模块选中/取消
+        $('dd input:checkbox').click(function() {
+            var parent = $(this).parent('dd').parent('dl').children('input:checkbox');
+            var pparent = $(this).parent('dd').parent('dl').parent('dt').children('input:checkbox');
+            if ($(this).attr('checked') === 'checked') {
+                parent.attr('checked', 'checked');
+                pparent.attr('checked', 'checked');
+            } else {
+                var plen = $(this).parent('dd').parent('dl').parent('dt').children('dl').children('input:checkbox[checked]').length;
+                var len = $(this).parent('dd').parent('dl').children('dd').children('input:checkbox[checked]').length;
+                len === 0 && parent.removeAttr('checked');
+                plen === 0 && pparent.removeAttr('checked');
+            }
+
+        });
+    })
+</script>

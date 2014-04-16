@@ -1,0 +1,25 @@
+<tagLib name='Happy' />
+<!DOCTYPE html>
+<html>
+    <head>
+        {:resource('basic', '数据字典')}
+    </head>
+    <body>
+        <div class='container-fluid'>
+            <!--导航栏-->
+            <include file='Public::navigate' />
+            <!--导航栏-->
+            <!--功能操作区-->
+            <div class='btn-group' style='margin: 10px;'>
+                <a class='btn' href='javascript:void(0)' onclick='EU.location.add()'><i class='icon-plus-sign'></i>添加</a>
+                <a class='btn' href='javascript:void(0)' onclick='EU.location.del(false, true)'><i class='icon-remove-sign'></i>删除</a>
+            </div>
+            <!--功能操作区-->
+            <!--数据列表区-->
+            <div class='scroll'>
+                <Happy:list style='table table-bordered table-nowrap table-striped' datasource='list' name='vo' pk='code_id' checkbox='key' show='code_value:代码,code_remark:描述,type_id|displayCodeType:类型' action='true' actionlist='EU.location.edit:编辑' />
+            </div>
+            <!--数据列表区-->
+        </div>
+    </body>
+</html>

@@ -1,0 +1,145 @@
+<div class='right' id="right_sidebar">
+    <div class="right_top">
+        <dl>
+            <dd>
+                <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=563508762&amp;site=qq&amp;menu=yes" title="有事您Q我"></a>
+            </dd>
+            <dd>
+                <a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=dkNARUNGTkFARDYHB1gVGRs" title="有问题？给我发邮件" style="text-decoration:none;"></a></dd>
+            <dd>
+                <a target="_blank" href="http://t.qq.com/letianpai50" title="关注我的腾讯微博"></a>
+            </dd>
+            <dd>
+                <a target="_blank" href="http://weibo.com/yangbai1988" title="关注我的新浪微博"></a>
+            </dd>
+            <dd><a href="?feed=rss2" title="RSS订阅我的博客"></a></dd>
+        </dl>
+    </div>
+    <div class="widget">
+        <div id="tab-title">
+            <h3>
+                <span class="selected">最新博文</span>
+                <span class="">热门博文</span>
+                <span class="">随机博文</span>
+            </h3>
+            <div id="tab-content">
+                <ul class="hide" style="display: block; opacity: 1; "> 
+                    <volist name="newest" id="con">
+                        <li>
+                            <a href="{:U('/' . $con['code'] . '/' . $con['id'])}" rel="bookmark" title="{$con.title}">{$con.title}</a>
+                        </li>
+                    </volist>
+                </ul>
+                <ul style="display: none;">
+                    <volist name="hot" id="con">
+                        <li>
+                            <a href="{:U('/' . $con['code'] . '/' . $con['id'])}" rel="bookmark" title="{$con.title}">{$con.title}</a>
+                        </li>
+                    </volist>
+                </ul>
+                <ul style="display: none; opacity: 1; ">
+                    <volist name="random" id="con">
+                        <li>
+                            <a href="{:U('/' . $con['code'] . '/' . $con['id'])}" rel="bookmark" title="{$con.title}">{$con.title}</a>
+                        </li>
+                    </volist>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="widget" id="category">
+        <div class="r_widget category">
+            <i class="t-icon"></i>
+            <h3>分类目录</h3>     
+            <ul>
+                <volist name="menu_list" id="con">
+                    <neq name="key" value="0">
+                    <li class="cat-item cat-item-2">
+                        <a href="__APP__/Home/{$con.code}"><strong>{$con.name}</strong></a> 
+                        ({:getArticleNumsByNav($con['model_name'], $con['code'])})
+                        <ul class="children">
+                            <volist name="con.tags" id="tag">
+                                <neq name="key" value="0">
+                                <li class="cat-item cat-item-159">
+                                    <a href="__APP__/Home/{$con.code}/{$tag.tag_code}" title="查看{$tag.name}所有文章">{$tag.name}</a> ({:getArticleNumsByTag($con['model_name'], $tag['tag_code'])})
+                                </li>
+                                </neq>
+                            </volist>
+                        </ul>
+                    </li>
+                    </neq>
+                </volist>
+                </li>
+            </ul>
+        </div>
+
+        <div class="r_widget weixin" id="weixin">
+            <i class="t-icon"></i>
+            <h3>我的微信</h3>
+            <div style="text-align:center;padding:10px;">
+                <img width="215px" src="__PUBLIC__/Home/img/weixin.jpg" />
+            </div>
+        </div>
+
+        <div class="r_widget tag">
+            <i class="t-icon"></i>
+            <h3>热门标签</h3>
+            <div class="tagcloud">
+                <!--                <volist name="hottags" id="con">
+                                    <a href="" class="tag-link-29" title="3个话题" style="{$con.style}">{$con.name}</a>
+                                </volist>-->
+                {$hottags}
+            </div>
+        </div>
+
+        <div class="r_widget">
+            <h3>近期微博</h3>
+            <ul class="ds-recent-comments" data-num-items="6" data-show-avatars="1" data-show-time="0" data-show-title="1" data-show-admin="1" data-avatar-size="30" data-excerpt-length="70" id="ds-recent-comments"></ul>
+        </div>
+
+        <div class="r_widget">
+            <h3>最近访客</h3>
+            <ul class="ds-recent-visitors" data-num-items="16" data-avatar-size="50" data-show-time="0"></ul>
+            <!--            <volist name="visitors" id="con">
+                            <div style="padding:0 10px 5px 0;">
+                                <span>{$con.location}的朋友</span>
+                                <div style="float:right">{$con.vs_date|time_format}</div>
+                            </div>
+                        </volist>-->
+        </div>
+    </div>
+    
+    <div class="widget">
+        <div class="r_statistics"><h3>博客统计</h3>
+            <ul>
+                <li>日志总数：90 篇</li>
+                <li>评论总数：119 篇</li>
+                <li>标签数量：189 个</li>
+                <!--<li>链接总数：0 个</li>-->
+                <li>建站日期：2013-7-18</li>
+                <li>运行天数：209 天</li>
+                <li>最后更新：2014-2-11</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="widget">
+        <div class="r_links friendlink">
+            <i class="t-icon"></i>
+            <h3>友情链接</h3>
+            <div class="v-links">
+                <ul>
+                    <li><a target="_blank" href="http://www.web-fish.com">web鱼</a></li>
+                    <li><a target="_blank" href="http://www.thinkphp.cn">ThinkPHP</a></li>
+                    <li><a target="_blank" href="http://www.onethink.cn">OneThink内容管理框架</a></li>
+                    <li><a target="_blank" href="http://www.51cto.com">51CTO</a></li>
+                    <li><a target="_blank" href="http://www.chenglin.name">程琳博客</a></li>
+                    <li><a target="_blank" href="http://tanhaibo.net">谭海波博客</a></li>
+                    <li><a target="_blank" href="http://http://www.yangqq.com">杨青博客</a></li>
+                    <li><a target="_blank" href="http://www.weibo.com/yangbai1988">杨佰Happy</a></li>   
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,27 @@
+<tagLib name="Happy" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        {:resource('basic,hd,validate,wbdialog,uploadify,editor', '文章列表')}
+    </head>
+    <body>
+        <include file="blue:Common:header" />
+        <include file="blue:Common:menu" />
+        <div id="right" style="margin-left:15px;overflow:auto">
+            <div style="overflow:auto">
+                <div class='status'>
+                    <span>原创文章列表</span>
+                    <div style="float:right">
+                        <a href="javascript:void(0);" onclick="$.article.add();" title='添加文章'>新增</a>
+                        <a href="javascript:void(0);" onclick="$.article.delete();" title='删除文章' data-action="delete">删除</a>
+                    </div>
+                </div>
+                <happy:list pk="id" datasource='list' name='val' show='title:标题,code:分类,logo|display_article_logo:配图,views:阅读次数,keywords:关键词,create_date|time_format:发布时间' style="table table-nowrap" action='true' actionlist='$.article.edit:编辑'/>
+                <div id='page'>{$page}</div>
+            </div>
+        </div>
+    </body>
+</html>
+<script>
+    
+</script>

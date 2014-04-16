@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+        {:resource('basic,hd','PHP个人博客后台管理')}
+        <!--        <base target="iframe" />-->
+    </head>
+    <body>
+        <include file="blue:Common:header" />
+        <include file="blue:Common:menu" />
+        <div id="right">
+            <include file="blue:Index:main" />
+        </div>
+    </body>
+</html>
+<style>
+    span[data-action="left-menu"] {
+        cursor: pointer;
+    }
+</style>
+<script>
+    $(function() {
+        $('span[data-action="left-menu"]').click(function() {
+            var oW = $('#right').css('width'), sW = $('#left').css('width');
+            oW = parseInt(oW);
+            sW = parseInt(sW);
+            $(this).data('sw') || $(this).data('sw', sW);
+            var flag = $('#left').attr('style').indexOf('none');
+            $('#left').toggle(300);
+//            if (flag === -1) {
+//                $(this).html('>>');
+//                $('#right').animate({width: oW + $(this).data('sw') + 'px'}, 300);
+//            } else {
+//                $(this).html('<<');
+//                $('#right').css({width: oW - $(this).data('sw') + 'px'});
+//            }
+        });
+        $('#left').find('li a').click(function() {
+            $('iframe').attr('src', $(this).attr('data-action'));
+        });
+    });
+</script>

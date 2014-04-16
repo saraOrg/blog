@@ -1,0 +1,88 @@
+<div class='main'>
+    <div class='left'>
+        <volist name="article" id="con">
+            <div class="clear"></div>
+            <ul>
+                <li>
+                    <div class="article">
+                        <h2>
+                            <a href="">{$con.title}</a>
+                            <if condition='is_newest($con["create_date"])'>
+                                <span class="new">
+                                    <img src="__PUBLIC__/Home/img/new.gif" title="较新的文章" >
+                                </span>
+                            </if>
+                        </h2>
+                        <div class="thumbnail_box">
+                            <div class="thumbnail">
+                                <if condition="$con['logo']">
+                                    <a href="" title="{$con.title}"><img src="__ROOT__/Admin/Uploads{$con.logo}"></a>
+                                    <else />
+                                    <a href="" title="{$con.title}"><img src="__PUBLIC__/Home/img/tb12.jpg"></a>
+                                </if>
+                            </div>
+                        </div>
+                        <div class="entry_post">
+                            <span>{$con.summary}...</span>
+                            <span class="more">
+                                <a href="__APP__/{$con.code}/{$con.id}.html" title="详细阅读 {$con.title}">阅读全文</a>
+                            </span>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="info">作者：{$con.create_by|displayUserName} | 发布：{$con.create_date|time_format} | 分类：{$con.code|getCategory} | 阅读：{$con.views}次
+                        </div>
+                        <div class="comments_num">
+							<a href="__APP__/Home/{$con.code}/{$con.id}.html?action=comment" class="ds-thread-count" data-thread-key="{$con.code}{$con.id}" title="《{$con.title}》上的评论"></a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </volist>
+        <div class="clear"></div>
+        <div class="W_pages" style="margin-top:10px;">
+            <eq name="prev" value='true'>
+            <a href="__APP__/{$prev_page}.html" class="W_btn_c">
+                <span>上一页</span>
+            </a>
+            </eq>
+            <span class="list">
+                <div id="page_list" style="display: none; ">
+                    <volist name="list_page" id="page">
+                        <if condition='$key eq $now_page'>
+                             <a style="width:45px;" class="current" >{$page}</a>
+                            <else />
+                             <a style="width:45px;" href="__APP__/{$key}.html">{$page}</a>
+                        </if>
+                    </volist>
+                </div>
+                <a href="javascript:void(0)" class="W_moredown">
+                    <span class="txt">第&nbsp;{$now_page}&nbsp;页</span>
+                    <em class="W_arrow"><em class="down">◆</em></em>
+                </a>
+            </span>
+            <eq name="next" value="true">
+            <a href="__APP__/{$next_page}.html" class="W_btn_c">
+                <span>下一页</span>
+            </a>
+            </eq>
+        </div>
+    </div>
+    <include file="Common:right" />
+</div>
+<script type="text/javascript">
+    $(function() {
+        var ct = null;
+        $('.list').hover(
+                function() {
+                    $('#page_list').show();
+                    clearTimeout(ct);
+                },
+                function() {
+                    ct = setTimeout(function() {
+                        $('#page_list').hide();
+                    }, 1000);
+                }
+        );
+    });
+</script>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/page.css">

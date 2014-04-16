@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        {:resource('basic,blue', '后台管理首页')}
+        <link rel="stylesheet" path="__PUBLIC__/blue/css/" type="text/css" id="skinCss" />
+    </head>
+    <body>
+        <div id="top">
+            <div class="top_left">
+                <div class="top_right">
+                    <div class="logo"><a href="http://www.uadmin.cn" target="_blank">uadmin.cn</a></div>
+                    <p class="sideBarSwitch"><a href="javascript:void(0);" onclick="sideBarSwitch(this);"><i class="ico icon-arrow-left"></i>隐藏左栏菜单</a></p>
+                    <ul class="topLinks">
+                        <li><a target="_tab" rel="skin" href=""><i class="ico ico-skin"></i>换肤</a></li>
+                        <li><a target="_tab" rel="cache" width="680" height="380" href="" title="清空缓存"><i class="ico ico-cache"></i>清空缓存</a></li>
+                        <li>｜</li>
+                        <li><a target="_tab" width="480" height="280" rel="pwd" href="" title="修改密码"><i class="ico ico-pwd"></i>修改密码</a></li>
+                        <li>｜</li>
+                        <li><a href="javascript:void(0);"><i class="ico ico-user fl"></i>{$session.uname}</a></li>
+                        <li>｜</li>
+                        <li><a href=""><i class="ico ico-logout"></i>退出</a></li>
+                    </ul>
+                    <div id="tab">
+                        <div class="tab_line"></div>
+                        <span id="tab_home" class="on" onclick="changeTab('home');"><i class="ico ico-home"></i>我的主页</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="left">
+            <div class="left_top">
+                <div class="left_bottom">
+                    <div class="menu">
+                        <ul class="main">
+                            <volist id="item" name="menu_list" >
+                            <li class="main">
+                                <a href="javascript:void(0);" class="main"><i class="ico ico_1"></i>{$item.name}</a>
+                                <volist name='item["children"]' id='subItem'>
+                                <ul class="sub">
+                                    <li class="sub"><a class="sub" target="_tab" rel="skin" href="{:U(''.$subItem['pf_code'].'/'.$subItem['f_code'].'/index')}">{$subItem.name}</a></li>
+                                </ul>
+                                    </volist>
+                            </li>
+                            </volist>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="right">
+            <div id="content" style="overflow: scroll;">
+                <iframe overflow="scroll" id="content_home" frameborder="0" allowtransparency="true" src="__APP__/Article/add.html"></iframe>
+            </div>
+        </div>
+    </body>
+</html>

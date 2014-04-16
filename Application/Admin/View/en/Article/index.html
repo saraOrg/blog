@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<tagLib name="happy" />
+<html>
+    <head>
+        {:resource('basic', '文章列表')}
+    </head>
+    <body>
+        <div class='container-fluid'>
+            <include file='Public:navigate' />
+            <div class='btn-group' style='margin:10px;'>
+                <a class='btn'><i class='icon-plus-sign'></i>新增</a>
+                <a class='btn'><i class='icon-remove-sign'></i>删除</a>
+            </div>
+            <div class='scroll'>
+                <happy:list datasource='list' name='val' show='id:ID,name:名称,type|displayType:类型' style="table table-bordered table-striped table-nowrap" action='true' actionlist='id|getEdit,id|getDel'/>
+            </div>
+        </div>
+    </body>
+</html>

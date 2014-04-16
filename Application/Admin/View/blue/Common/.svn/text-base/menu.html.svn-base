@@ -1,0 +1,13 @@
+<div id='left' style="width:180px;">
+    <volist name="menu_list" id="nav">
+        <div class='nav'>
+            <div class="nav_u"><span class="pos up">{$nav.name}</span></div>
+        </div>
+        <ul class='option'>
+            <volist name="nav.children" id="op">
+                <!--                        <li><a href='javascript:void(0);' data-action='{:U("/" . $op["f_code"])}'>{$op.name}</a></li>-->
+                <li><a href='{:U("/" . $op["f_code"])}' name='{$op["f_code"]}'>{$op.name}</a></li>
+            </volist>
+        </ul>
+    </volist>
+</div>

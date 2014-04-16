@@ -1,0 +1,72 @@
+<include file="Common:header" title_pre="{$vo.title} | " />
+<include file="Common:top" />
+<div class='main'>
+    <div class='left'>
+        <div class="article" style="margin-top:18px;">
+            <h2>{$vo.title}</h2>
+            <div class="article_info">作者：{$vo.create_by|displayUserName} &nbsp; 发布：{$vo.create_date|time_format} &nbsp; 分类：{$vo.code|getCategory} &nbsp; 阅读：{$vo.views}次 &nbsp;
+                <a href="javascript:void(0);" class="ds-thread-count" >
+                    <if condition="getCommentsFromDuoshuo($vo['code'].$vo['id'])">
+                        {:getCommentsFromDuoshuo($vo['code'].$vo['id'])}条评论
+                        <else />
+                        暂无评论
+                    </if>
+                </a> &nbsp;
+            </div>
+            <div class="clear"></div>
+            <div class="context">
+                <p>{$vo.content|htmlspecialchars_decode}</p>
+                <div class="single_keyword">
+                    <div class="fenxiang">
+                        <!--                        Baidu Button BEGIN -->
+                        <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
+                            <span class="bds_more">分享到：</span>
+                            <a class="bds_qzone" title="分享到QQ空间" href="#"></a>
+                            <a class="bds_tsina" title="分享到新浪微博" href="#"></a>
+                            <a class="bds_tqq" title="分享到腾讯微博" href="#"></a>
+                            <a class="bds_renren" title="分享到人人网" href="#"></a>
+                            <a class="bds_t163" title="分享到网易微博" href="#"></a>
+                        </div>
+                        <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6726409" src="http://bdimg.share.baidu.com/static/js/bds_s_v2.js?cdnversion=386818"></script>
+                        <!--                        Baidu Button END -->
+                    </div>
+                    本文关键词：{$vo.keywords|showKeywords}        
+                </div>
+                <div class="slink">
+                    本文链接：<a href="{:U('/' . $vo['code'] . '/' . $vo['id'])}">http://www.yangbai.com{:U('/' . $vo['code'] . '/' . $vo['id'])}</a><a class="links" id="link-copy" href="javascript:void(0);">[+复制链接]</a><br>
+                    版权声明：除注明文章内容来源以外，其它文章均为原创，转载请以链接形式注明出处。
+                </div>
+            </div>
+        </div>
+        <div class="articles">
+            【上一篇】<a href="" >CSS固定多行文本框的高度与宽</a><br>
+            【下一篇】<a href="" >推荐给前端开发人员的20款响应式jQuery插件</a>
+        </div>
+        <div class="articles">
+            <div class="relatedposts">
+                <h3>您可能还会对这些文章感兴趣！</h3>
+                <ol><!-- 没有相关文章显示随机文章 -->
+                    <ol>
+                        <li>
+                            <a href="" rel="bookmark" title="">ASP记录上一次链接的网址进行跳转代码分享 </a>
+                        </li>
+                    </ol>
+                </ol>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="article" id="ds-comment" style="margin-top:15px;">
+            <div class="ds-thread" data-thread-key="{$vo.code}{$vo.id}"></div>
+        </div>
+    </div>
+    <include file="Common:right" />
+</div>
+<include file="Common:bottom" />
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/prettify/prettify.css" />
+<script type="text/javascript" src="__PUBLIC__/prettify/prettify.js"></script>
+<script language="javascript" type="text/javascript">
+    $(function() {
+        prettyPrint();
+    });
+</script>

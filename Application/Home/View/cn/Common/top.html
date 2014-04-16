@@ -1,0 +1,62 @@
+<div class='top'>
+    <div id="header">
+        <!-- <div class="weather">
+                <iframe allowtransparency="true" frameborder="0" width="195" height="96" scrolling="no" src="http://tianqi.2345.com/plugin/widget/index.htm?s=1&z=1&t=0&v=0&d=1&k=&f=10&q=1&e=0&a=1&c=54511&w=195&h=96"></iframe>
+        </div> -->
+        <!-- <div id="top_logo">
+        <a href=""><div class="logo"></div></a>
+    </div> -->
+        <div class="motto">如果要用一种东西来记录我的生命历程，我会用「朋友」！</div>
+        <div class="search">		
+            <form id="searchform" method="post" action="{:U('/Home/Search')}">
+                <div id="header-search" class="search-sort">
+                    <span class="search-sort-txt">{$typename|default=全部}</span><em></em>	
+                    <input type="hidden" name="type" id="search" value="{$Think.request.type|default=0}">
+                    <ul id="search-sort-list" class="search-sort-list">
+                        <li value="0" class="">全部</li>
+                        <li value="1">技术</li>
+                        <li value="2">心情</li>
+                        <li value="3">生活</li>
+                        <li value="4">工作</li>
+                    </ul>
+                </div>
+                <input type="text" placeholder="请输入查找信息的关键字" name="keywords" value='{$Think.request.keywords}'>
+                <button type="submit">搜索</button>
+            </form>
+        </div>
+    </div>
+    <div class="nav">
+        <ul id="nav" class="menu">
+            <volist name="menu_list" id="nav">
+                <if condition='$key eq 0'>
+                    <li class="cur" cur="{$nav.code}">
+                        <a href="{:U('/')}">{$nav.name}</a>
+                    </li>
+                    <else />
+                    <li cur="{$nav.code}">
+                        <a href="{:U('/' . $nav['code'] . '/index')}">{$nav.name}</a>
+                    </li>
+                </if>
+            </volist>
+            <div class="toptime">{:showNowTime()}</div>
+        </ul>  
+    </div>
+</div>
+<volist name="menu_list" id="nav">
+    <eq name="nav.code" value="$controller_name">
+    <notempty name="nav.tags">
+        <div class='menu-tag'>
+            <div class="box sort-box">
+                <div class="category">
+                    <i style="margin:8px 10px 0 0" class="t-icon"></i>
+                </div>
+                <volist name="nav.tags" id="tag">
+                    <a href="__APP__/{$nav.code}/{$tag.tag_code}" class="item <eq name='key' value='0'>current</eq>" tag='{$tag.tag_code}'>{$tag.name}&nbsp;&nbsp;<em class="st-num">{:getArticleNumsByTag($nav['model_name'], $tag['tag_code'])}</em>
+                    </a>
+                </volist>
+            </div>
+        </div>
+    </notempty>
+    </eq>
+</volist>
+<div class="clear"></div>

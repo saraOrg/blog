@@ -1,0 +1,29 @@
+<form action='__URL__/{$action}.html' method='post'>
+    <input type='hidden' name='code_id' value='{$vo.code_id}' />
+    <div>
+        <div class='input-prepend'>
+            <span class='add-on red'>数据代码</span>
+            <input type='text' title='请输入数据字典代码' placeholder="请输入数据字典代码" required="required" name='code_value' value='{$vo.code_value}'/>
+        </div>
+    </div>
+    <div>
+        <div class='input-prepend'>
+            <span class='add-on red'>数据描述</span>
+            <input type='text' title='请输入数据字典描述' placeholder="请输入数据字典描述" required="required" name='code_remark' value='{$vo.code_remark}'/>
+        </div>
+    </div>
+    <div>
+        <div class='input-prepend'>
+            <span class='add-on red'>所属类型</span>
+            <select name='type_id'>
+                <option>---请选择---</option>
+                <volist name='codeType' id='con'>
+                    <option value='{$con.type_id}' <eq name='con.type_id' value='$vo.type_id'>selected</eq> >{$con.type_remark}</option>
+                </volist>
+            </select>
+        </div>
+    </div>
+    <div class='tc mt20'>
+        <input type='submit' class='btn btn-primary' value='保存' />
+    </div>
+</form>

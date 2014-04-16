@@ -1,0 +1,72 @@
+<form action="__URL__/{$action}.html" method="post">
+    <div class="form_table lsfl_edit_list" style='margin-top:-10px;'>
+        <div class="form_table lsfl_edit_list">
+            <dl class="clearfix">
+                <dt><span style="color: #f00;" class="must CH S_spetxt">*</span>文章标题：</dt>
+                <dd class="conbox">
+                    <input type="text" required="required" class="W_inputStp" name="title" node-type="name" value="{$vo.title}" title="请输入标题" />
+                    <div class="M_notice_del clearfix" node-type="title" style="display:none;"></div>
+                </dd>
+            </dl>
+            <dl class="clearfix">
+                <dt><span style="color: #f00;" class="must CH S_spetxt">*</span>文章概要：</dt>
+                <dd class="conbox">
+                    <textarea required="required" title="请输入文章概要" class="W_inputStp list_desc" name="summary" style="width:550px;resize:none">{$vo.summary}</textarea>
+                    <div class="M_notice_del clearfix" style="display:none;" node-type="summary"></div>
+                </dd>
+            </dl>
+            <dl class="clearfix">
+                <dt><span style="color: #f00;" class="must CH S_spetxt">*</span>所属分类：</dt>
+                <dd class="select">
+                    <select name="code" required="required" title="请选择分类">
+                        <volist name="cate" id="nav">
+                            <option value="" disabled>{$nav.name}</option>
+                            <volist name="nav.tags" id="tag">
+                                <neq name="key" value="0">
+                                <option value="{$tag.tag_code}" <eq name="tag.tag_code" value="$vo.code">selected</eq> >|--{$tag.name}</option>
+                                </neq>
+                            </volist>
+                        </volist>
+                    </select>
+                     <div class="M_notice_del clearfix" style="display:none;" node-type="code"></div>
+                </dd>
+            </dl>
+            <dl class="clearfix" style='margin-bottom:-10px;'>
+                <dt>logo图片：</dt>
+                <dd class="conbox">
+                    <input type="file" data-type="logo" id="file_upload" />
+                    <input type="hidden" name="logo" value="{$vo.logo}" />
+                </dd>
+            </dl>
+            <dl class="clearfix">
+                <dt>关键词：</dt>
+                <dd class="conbox">
+                    <input type="text" class="W_inputStp" name="keywords" node-type="name" value="{$vo.keywords}" watermark="记得要用逗号分隔哦" />
+                </dd>
+            </dl>
+            <dl class="clearfix">
+                <dt>文章内容：</dt>
+                <dd class="conbox">
+                    <textarea class="W_inputStp list_desc" id="content_box" name="content" style="width:580px;height:180px;">{$vo.content}</textarea>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <input type="hidden" name="id" value="{$vo.id}" />
+    <input type="hidden" name="create_by" value="{:session('user.uid')}">
+</form>
+<script language='javascript' type='text/javascript'>
+    $(function() {
+        EU.editor.create('content_box');
+        $("#file_upload").uploadify({
+            height: 20,
+            swf: PUBLIC + '/uploadify/uploadify.swf',
+            uploader: URL + '/uploadImg',
+            width: 120,
+            onUploadSuccess: function(file, data, response) {
+                var data = eval('(' + data + ')');
+                $('input[name="logo"]').val(data.Filedata.savepath + 'th_' + data.Filedata.savename);
+            }
+        });
+    });
+</script>

@@ -1,0 +1,32 @@
+<!--<tagLib name="Happy" />-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+        {:resource('basic,editor,uploadify,validate,wbdialog,default', '后台管理')}
+    </head>
+    <body>
+        <include file='default:Public:top' />
+        <div class="container clearfix" style="overflow:hidden">
+            <include file='default:Public:menu' />
+            <div class="main-wrap">
+                <div class="crumb-wrap">
+                    <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">作品管理</span></div>
+                </div>
+                <div class="result-wrap">
+                    <div class="result-title" >
+                        <div class="result-list">
+                            <a href="javascript:void(0);" onclick="$.article.add()" ><i class="icon-font"></i>新增文章</a>
+                            <a href="javascript:void(0)" onclick="$.article.delete()"><i class="icon-font"></i>批量删除</a>
+                            <a id="updateOrd" href="javascript:void(0)"><i class="icon-font"></i>更新排序</a>
+                        </div>
+                    </div>
+                    <div class="result-content">
+                        <happy:list pk="id" datasource='list' name='val' show='title:标题,code:分类,logo|display_article_logo:配图,views:阅读次数,create_date|time_format:发布时间' style="table table-nowrap" action='true' actionlist='$.article.edit:编辑'/>
+                        <div id='page'>{$page}</div>
+                    </div>
+                </div>
+            </div>
+            <!--/main-->
+        </div>
+    </body>
+</html>

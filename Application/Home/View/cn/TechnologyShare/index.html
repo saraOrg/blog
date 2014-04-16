@@ -1,0 +1,59 @@
+<include file="Common:header" title_pre="技术分享 | " />
+<include file="Common:top" />
+<div class='main'>
+    <div class='left'>
+        <if condition="$article neq false">
+            <volist name="article" id="con">
+                <ul>
+                    <li>
+                        <div class="article">
+                            <h2>
+                                <a href="">{$con.title}</a>
+                                <if condition="is_newest($con['create_date'])">
+                                    <span class="new">
+                                        <img src="__PUBLIC__/Home/img/new.gif">
+                                    </span>
+                                </if>
+                            </h2>
+                            <div class="thumbnail_box">
+                                <div class="thumbnail">
+                                    <if condition='$con["logo"]'>
+                                        <a href="" title="{$con.title}"><img src="__ROOT__/Admin/Uploads{$con.logo}"></a>
+                                        <else />
+                                        <a href="" title="{$con.title}"><img src="__PUBLIC__/Home/img/tb12.jpg"></a>
+                                    </if>
+                                </div>
+                            </div>
+                            <div class="entry_post">
+                                <span>{$con.summary}...
+                                </span>
+                                <span class="more">
+                                    <a href="__APP__/{$con.code}/{$con.id}.html" title="详细阅读 {$con.title}">阅读全文</a>
+                                </span>
+                            </div>
+                            <div class="clear"></div>
+                            <div class="info">作者：{$con.create_by|displayUserName} | 发布：{$con.create_date|time_format} | 分类：
+                                {$con.code|getCategory} | 阅读：{$con.views}次
+                            </div>
+                            <div class="comments_num">
+                                <a href="__APP__/Home/{$con.code}/{$con.id}.html?action=comment" title="《{$con.title}》上的评论">
+                                    <a href="__APP__/Home/{$con.code}/{$con.id}.html?action=comment" class="ds-thread-count" data-thread-key="{$con.code}{$con.id}" title="《{$con.title}》上的评论"></a>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="clear"></div>
+            </volist>
+            <else />
+            <div style="text-align:center;margin:20px;font-size:20px;">暂无文章！
+            </div>
+        </if>
+        <div class="navigate">
+            {$page}
+        </div>
+    </div>
+    <include file="Common:right" />
+</div>
+<div class="clear"></div>
+<include file="Common:bottom" />

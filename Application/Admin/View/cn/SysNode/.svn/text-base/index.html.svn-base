@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {:resource('basic,ztree', '系统节点管理')}
+    </head>
+    <body>
+        <!-- 主页面 -->
+        <div class='container-fluid'>
+            <!--菜单-->
+            <include file='Public:navigate' />
+            <!--菜单结束-->
+            <!-- 主体内容 -->
+            <!--功能操作区-->
+            <div class='btn-group' style='margin:10px;'>
+                <a class='btn btn-info' href='javascript:void(0)' onclick='addNode()'><i class='icon-plus-sign'></i> 添加</a>
+                <a class='btn btn-primary' href='javascript:void(0)' onclick='editNode()'><i class='icon-edit'></i> 编辑</a>
+                <a class='btn btn-warning' href='javascript:void(0)' onclick='delNode()'><i class='icon-remove-sign'></i> 删除</a>
+            </div>
+            <!--功能操作区结束-->
+            <!--数据显示区-->
+            <div id='NodeTree' class='ztree'></div>
+            <!--数据显示区结束-->
+            <!-- 主体内容结束 -->
+        </div>
+        <!-- 主页面 结束-->
+    </body>
+</html>
+<script type="text/javascript">
+    var zTree = null;
+    $(function() {
+        var setting = {
+            data: {
+                simpleData: {
+                    enable: true,
+                    name: 'title',
+                }
+            },
+            view: {
+                fontCss: getFont,
+                selectedMulti: false, //屏蔽多选
+                addDiyDom: addDiyDom
+            }
+        };
+        zTree = $.fn.zTree.init($('#NodeTree'), setting, eval('{$nodeList}'));
+    })
+    function addDiyDom(treeId, treeNode) {
+        //打印函数的参数列表
+        //console.dir(arguments);
+        var aObj = $("#" + treeNode.tId + "_a"), str = '';
+        if (treeNode.level < 3) {
+            str += '<a href="javascript:void(0)" onclick="addNode(' + treeNode.id + ',' + (treeNode.level + 1) + ')" style="color:#99c;padding:0" title="添加"><img src="__PUBLIC__/Images/ztree_add.png" /></a>';
+        }
+        if (treeNode.level > 0) {
+            str += '<a href="javascript:void(0)" onclick="editNode(' + treeNode.id + ',' + (treeNode.level + 1) + ')" style="color:#99c;padding:0" title="编辑"><img src="__PUBLIC__/Images/ztree_edit.png" /></a>';
+            str += '<a href="javascript:void(0)" onclick="delNode(' + treeNode.id + ',' + (treeNode.level + 1) + ')" style="color:#99c;padding:0" title="删除"><img src="__PUBLIC__/Images/ztree_del.png" /></a>';
+        }
+        aObj.after(str);
+    }
+    function getFont(treeId, treeNode) {
+        return treeNode.font ? treeNode.font : {};
+    }
+    function addNode(pid, level) {
+        //如果没有传递pid，则从选中的节点信息里面获取
+        if (pid === undefined) {
+            var nodes = zTree.getSelectedNodes(), level = 1, pid = 0;
+            //如果有选中的节点
+            if (nodes.length > 0) {
+                level = nodes[0].level + 1;
+                pid = nodes[0].id;
+            } else {
+                EU.ui.alert('请选择父节点！');
+                return;
+            }
+        }
+        EU.ui.html(URL + '/add/level/' + level + '/pid/' + pid, {}, {title: '添加节点'});
+    }
+    function editNode(id, level) {
+        //如果没有传递pid，则从选中的节点信息里面获取
+        if (id === undefined) {
+            var nodes = zTree.getSelectedNodes(), level = 1, id = 0;
+            //如果有选中的节点
+            if (nodes.length > 0) {
+                level = nodes[0].level + 1;
+                id = nodes[0].id;
+                if (id === 0) {
+                    EU.ui.alert('请选择有效节点！');
+                    return;
+                }
+            } else {
+                EU.ui.alert('请选择编辑节点！');
+                return;
+            }
+        }
+        EU.ui.html(URL + '/edit/level/' + level + '/id/' + id, {}, {title: '编辑节点'});
+    }
+    function delNode(id) {
+        if (id === undefined) {
+            var nodes = zTree.getSelectedNodes(), id = 0;
+            if (nodes.length > 0 && nodes[0].id !== 0) {
+                id = nodes[0].id;
+            } else {
+                EU.ui.alert('请选择要删除的节点！');
+            }
+        }
+        EU.location.del(id, true);
+    }
+</script>
+

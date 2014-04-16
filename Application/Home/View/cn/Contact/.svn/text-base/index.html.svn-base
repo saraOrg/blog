@@ -1,0 +1,35 @@
+<include file="Common:header" title_pre="关于和留言 | " />
+<include file="Common:top" />
+<div class='main'>
+    <div class='left'>
+        <div class="article" style="margin-top:18px;">
+            <h2>关于&留言</h2>	
+            <div class="context">
+                <div class="readme" style="width:640px;height:497px;padding-top:50px">
+                    <p onselect="alert()">如果说人生是自我编写的程序，</p>
+                    <p>那么青春就是其中意味深长的代码。</p>
+                    <p>或简单，</p>
+                    <p>分解成彼此独立的字符；</p>
+                    <p>或复杂，</p>
+                    <p>拼凑成一连串神秘的字符串。</p>
+                    <p>我们尝试着不断调试，</p>
+                    <p>不断优化，</p>
+                    <p>无论编译的结果如何，</p>
+                    <p>过程才是完美。</p>
+                    <p>如果说这段代码不能复制，</p>
+                    <p>那么我愿意用一生去续写...... </p>
+                </div>
+                <p>QQ：563508762</p>
+                <p>邮箱：yangbai6644@163.com</p>
+                <p>不断努力、不断学习、不断创新、不断领悟。　好文章收藏起来、好东西分享出来<strong>！</strong></p>
+                <p>来了就留点那啥吧～！</p>
+                <a href='http://me.alipay.com/yangbai' style="margin: 20px;" target="_blank"><img src='__PUBLIC__/Home/img/donate_link.png' /> </a>
+            </div>
+        </div>
+        <div class="article" style="margin-top:20px;">
+            <div class="ds-thread" data-thread-key='contactyangbai'></div>
+        </div>
+    </div>
+    <include file="Common:right" />
+</div>
+<include file="Common:bottom" />

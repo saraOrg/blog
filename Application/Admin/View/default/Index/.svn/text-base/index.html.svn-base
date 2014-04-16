@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+        {:resource('basic,default,wbdialog', '后台管理')}
+    </head>
+    <body>
+        <include file='default:Public:top' />
+        <div class="container clearfix">
+            <include file='default:Public:menu' />
+            <div class="main-wrap">
+                <div class="crumb-wrap">
+                    <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">作品管理</span></div>
+                </div>
+                <div class="info-process" data-level="{$Think.BLOG_PROCESS}">
+                    博客完整度
+                    <div class="p-wrap">
+                        <div class="p-inner">
+                            <em class="level">{$Think.BLOG_PROCESS}</em>
+                        </div>
+                    </div>
+                </div>
+                {:hook('AdminIndex')}
+            </div>
+            <!--/main-->
+        </div>
+        <div class="cont-ft">
+            <div class="copyright"> ©2014 <a href="http://www.yangbai6644.com" target="_blank">PHP个人博客</a> SARA</div>
+        </div>
+    </body>
+</html>

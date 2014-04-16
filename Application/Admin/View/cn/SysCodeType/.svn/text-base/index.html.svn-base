@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<tagLib name="happy" />
+<html>
+    <head>
+        {:resource('basic', '数据字典类型')}
+    </head>
+    <body>
+        <div class='container-fluid'>
+            <include file='Public:navigate' />
+            <div class='btn-group' style='margin:10px;'>
+                <a class='btn' href="javascript:void(0)" onclick="EU.location.add()"><i class='icon-plus-sign'></i> 添加</a>
+                <a class='btn' href="javascript:void(0)" onclick="EU.location.del(false, true)"><i class='icon-remove-sign'></i> 删除</a>
+            </div>
+            <div class='scroll'>
+                <happy:list pk="type_id" datasource='list' name='val' checkbox="key" show='type_id:类型id,type_value:类型值,type_remark:类型描述' style="table table-bordered table-striped table-nowrap" action='true' actionlist='EU.location.edit:编辑'/>
+            </div>
+        </div>
+    </body>
+</html>

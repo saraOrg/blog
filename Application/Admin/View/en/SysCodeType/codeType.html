@@ -1,0 +1,24 @@
+<form action="__URL__/{$action}.html" method='post'>
+    <input type="hidden" name="type_id" value="{$vo.type_id}" />
+    <div>
+        <div class='input-prepend'>
+            <span class='add-on red'>Code</span>
+            <input type='text' name='type_value' placeholder="Please enter the code" required="required" autocomplete='off' value='{$vo.type_value}'/>
+        </div>
+    </div>
+     <div>
+        <div class='input-prepend'>
+            <span class='add-on red'>Description</span>
+            <input type='text' name='type_remark' placeholder="Please enter the description" required="required" value='{$vo.type_remark}' />
+        </div>
+    </div>
+    <div>
+        <div class='input-prepend'>
+            <span class='add-on red'>Order</span>
+            <input type='text' name='seq_code' placeholder="Please enter a sort logo" required="required" value='{$vo.seq_code}' />
+        </div>
+    </div>
+    <div class='tc mt20'>
+        <input type='submit' class='btn btn-primary' value='Save' />
+    </div>
+</form>

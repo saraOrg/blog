@@ -1,0 +1,49 @@
+<form action='__URL__/{$action}.html' method="post">
+    <div>
+        <div class='input-prepend'>
+            <span class='add-on red'>博文标题</span>
+            <input type='text' required="required" name="title" class='span5' autocomplete="off" value='{$vo.title}'/>
+        </div>
+    </div>
+    <div>
+        <div class='input-prepend'>
+            <span class='add-on red'>博文概要</span>
+            <textarea style="width:455px;height:80px;" name="summary">{$vo.summary}</textarea>
+        </div>
+    </div>
+    <div>
+        <div class='input-prepend'>
+            <span class='add-on red'>文章分类</span>
+            <select class="span5" name="code" required="required">
+                <volist name="cate" id="nav">
+                    <option value="" disabled>{$nav.name}</option>
+                    <volist name="nav.tags" id="tag">
+                        <neq name="key" value="0">
+                        <option value="{$tag.tag_code}" <eq name="tag.tag_code" value="$vo.code">selected</eq> >&nbsp;&nbsp;&nbsp;&nbsp;|--{$tag.name}</option>
+                    </neq>
+                    </volist>
+                </volist>
+            </select>
+        </div>
+    </div>
+    <div>
+        <div class='input-prepend'>
+            <span class='add-on'>&nbsp;&nbsp;关键词&nbsp;&nbsp;</span>
+            <input type='text' required="required" class='span5' name="keywords" autocomplete="off" value='{$vo.keywords}' placeholder="记得要用逗号分隔哦" />
+        </div>
+    </div>
+    <div>
+        <textarea id="content_box" style="width:550px;height:200px;" name="content">{$vo.content}</textarea>
+    </div>
+    <div class="tc mt20">
+        <input type="hidden" name="id" value="{$vo.id}" />
+        <input type="hidden" name="create_by" value="{:session('user.uid')}">
+        <input type="submit" class="btn btn-primary" value="保存"/>
+    </div>
+</form>
+
+<script type="text/javascript">
+	$(function() {
+		//EU.editor.create('content_box');
+	})
+</script>

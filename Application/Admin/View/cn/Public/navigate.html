@@ -1,0 +1,85 @@
+<div  class="navbar navbar-static" id="top" style="margin-left:0px;margin-bottom: 10px;">
+    <div class="navbar-inner" style="padding:0px;">
+        <div class="menu-top-bar" >
+            <div  class="brand" style='margin: 0;padding: 0;'><a href="__APP__"><img src="__PUBLIC__/Images/tp_logo.png" width="50px;"/></a></div>
+            <ul class="nav pull-right">
+                <li class="dropdown" style="height:50px;margin-bottom:-20px;">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#" style="padding: 0px;"><img style='width:55px;height:50px;' src="__PUBLIC__/UserAvatar/index.php?uid={:session('user.uid')}&a=get&size=middle" />&nbsp;{$Think.session.user.login_name}[{$Think.session.user.nick_name}]&nbsp;</a>
+                    <ul aria-labelledby="drop3" role="menu" class="dropdown-menu">
+                        <li role="presentation"><a href="javascript:void(0);" onclick="EU.location.UserAvatar(this, '{:session('user.uid')}');" tabindex="-1" role="menuitem"><i class="icon-user"></i> 用户头像</a></li>
+                        <li role="presentation"><a href="javascript:void(0);" onclick="EU.location.password();" tabindex="-1" role="menuitem"><i class="icon-lock"></i> 修改密码</a></li>
+                        <li role="presentation"><a href="javascript:void(0);" onclick='EU.location.logout();' tabindex="-1" role="menuitem"><i class="icon-off"></i> 安全退出</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div style="margin-left:0px;float:left;padding: 5px;" class="well" id="hmenu">
+    <div style='padding:5px;height:50px;margin-bottom:30px;' id="search-box">
+        <div class="header">快捷菜单</div>
+        <ul>
+            <a href=""><div class="article"></div></a>
+            <a href="#"><div class="user"></div></a>
+            <a href="#"><div class="system"></div></a>
+        </ul>
+    </div>
+    <div class="clear"></div>
+    <div style="padding:5px;margin-bottom:10px;" id="search-box">
+        <div class="header">基本菜单</div>
+        <ul>
+            <volist id="item" name="menu_list" >
+                <li>
+                    <div class="side-up">{$item.name}</div>
+                    <ul id="cmenu">
+                        <volist name='item["children"]' id='subItem'>
+                            <li role="presentation">
+                                <a href="{:U(''.$subItem['pf_code'].'/'.$subItem['f_code'].'/index')}" tabindex="-1" role="menuitem"><i class="{$subItem.m_icon}"></i>{$subItem.name}</a>
+                            </li>
+                        </volist>
+                    </ul>
+                </li>
+            </volist>
+        </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    /**
+     * jQuery菜单加载插件
+     */
+    ~(function($) {
+        var hmenu = function(element, options) {
+            this.options = $.extend({}, $.fn.defaults, options);
+            this.element = $(this.options.element || element);
+            this.open = $(this.options.open);
+            this.listen();
+        }
+        hmenu.prototype = {
+            construct: hmenu,
+            hide: function() {
+                //this.open.show();
+                this.element.hide();
+            },
+            toggle: function(e) {
+                $(e.currentTarget).next('ul').toggle();
+                $(e.currentTarget).toggleClass('side-up')
+                        .toggleClass('side-down');
+            },
+            listen: function() {
+                this.element.find('ul li div').on('click', $.proxy(this, 'toggle'));
+                //this.element.find('ul li div').on('click', $.proxy(this.toggle, this));
+            }
+        };
+        $.fn.hmenu = function(option) {
+            $this = $(this), data = $this.data('hmenu'), option = typeof (option) && option;
+            !data && $(this).data('hmenu') || $(this).data('hmenu', (data = new hmenu(this, option)));
+            if (typeof (option) === 'string') {
+                data[option]();
+            }
+        };
+        $.fn.defaults = {open: '#cmenu'};
+    })(jQuery);
+    $(function() {
+        $('#hmenu').hmenu();
+    });
+</script>

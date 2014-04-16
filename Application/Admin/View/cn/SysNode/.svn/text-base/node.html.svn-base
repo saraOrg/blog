@@ -1,0 +1,47 @@
+<form action='__URL__/{$action}.html' method="post">
+    <div>
+        <div class='input-prepend'>
+            <span class='add-on blue'>&nbsp;&nbsp;父节点&nbsp;</span>
+            <input type='text' readonly="readonly" class='span2' autocomplete="off" value='{$vo.pname|default="系统节点"}' />
+        </div>
+    </div>
+    <div>
+        <div class='input-prepend'>
+            <span class='add-on red'>节点代码</span>
+            <input type='text' required="required" class='span2' name="code" autocomplete="off" value='{$vo.code}' />
+        </div>
+    </div>
+    <div>
+        <div class='input-prepend'>
+            <span class='add-on red'>节点名称</span>
+            <input type='text' required="required" class='span2' name="name" autocomplete="off" value='{$vo.name}' />
+        </div>
+    </div>
+    <div>
+        <div class='input-prepend'>
+            <span class='add-on red'>节点描述</span>
+            <input type='text' class='span2' name="remark" autocomplete="off" value='{$vo.remark}' />
+        </div>
+    </div>
+    <div>
+        <div class='input-prepend'>
+            <span class='add-on red'>排序标识</span>
+            <input type='text' class='span2' name="sort" autocomplete="off" value='{$vo.sort}' />
+        </div>
+    </div>
+    <div>
+        <div class='input-prepend'>
+            <span class='add-on red'>节点状态</span>
+            <select name="status" class="span2">
+                <option value="1" <eq name="vo.status" value="1">selected</eq> >正常</option>
+                <option value="0" <eq name="vo.status" value="0">selected</eq> >禁用</option>
+            </select>
+        </div>
+    </div>
+    <div class="tc mt20">
+        <input type="hidden" name="pid" value="{$vo.pid|default=0}" />
+        <input type="hidden" name="level" value="{$vo.level|default=1}" />
+        <input type="hidden" name="id" value="{$vo.id}" />
+        <input type="submit" class="btn btn-primary" value="保存"/>
+    </div>
+</form>
